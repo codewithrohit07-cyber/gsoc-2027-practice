@@ -3,27 +3,28 @@
 #include <vector>
 using namespace std;
 
-int main() {
-	vector<int> study_hours={2,1,3,2,4};
-	sort(study_hours.begin(),study_hours.end());
-	int total_study_hours=0;
-	float average=0.0;
+int calculate_total(const std::vector<int>& hours) {
+    int total = 0;
 
-	for(int hour : study_hours) {
-		total_study_hours += hour; 	
-    	}
-	
-	average = float(total_study_hours)/study_hours.size();
-	cout << "total study hours : " << total_study_hours << "\n";
-	cout << "average study hours : " << average << "\n";
-	if (average >= 2.0) {
-    		cout << "Great job! You averaged at least 2 hours per day.\n";
-	} else {
-    		cout << "Keep practicing! Aim for 2 hours per day.\n";
+    for (int hour : hours) {
+        total += hour;
+    }
+
+    return total;
+}
+
+double calculate_average(const std::vector<int>& hours) {
+	double average = 0.0;
+	if(hours.empty()){
+	    return average;
 	}
-	cout << "sorted hours :\n";
-	for(int hour : study_hours) {
-		cout << hour << " ";
-	}
+	int total = calculate_total(hours);
+	return static_cast<double>(total)/hours.size(); 
+}
+
+int main() {
+	vector<int> study_hours={};
+	cout << "total hours : " << calculate_total(study_hours) << endl;
+	cout << "average hours : " << calculate_average(study_hours) << endl;
 	return 0;
 }

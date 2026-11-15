@@ -56,16 +56,20 @@ int main() {
 
     std::cout << "Study hours: "
               << std::get<2>(course) << '\n';
-    // Access pair values.
-    std::cout << "\nAccessing pair values:\n";
-    std::cout << "Subject: " << study.first << '\n';
-    std::cout << "Hours: " << study.second << '\n';
+    // Structured bindings with a pair.
+    auto [subject_name, hours] = study;
 
-    // Access tuple values.
-    std::cout << "\nAccessing tuple values:\n";
-    std::cout << "Course: " << std::get<0>(course) << '\n';
-    std::cout << "Day: " << std::get<1>(course) << '\n';
-    std::cout << "Study time: " << std::get<2>(course) << '\n';
-    
-    return 0;
+   std::cout << "\nStructured bindings with pair:\n";
+   std::cout << "Subject: " << subject_name << '\n';
+   std::cout << "Hours: " << hours << '\n';
+
+   // Structured bindings with a tuple.
+   auto [course_name, day, study_time] = course;
+
+   std::cout << "\nStructured bindings with tuple:\n";
+   std::cout << "Course: " << course_name << '\n';
+   std::cout << "Day: " << day << '\n';
+   std::cout << "Study time: " << study_time << '\n';
+   
+   return 0;
 }
